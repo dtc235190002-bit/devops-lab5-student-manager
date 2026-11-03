@@ -1,16 +1,31 @@
 
 """
-Student Manager — DevOps Lab 5
+Student Manager - DevOps Lab 5
 Module: Main Application
 """
 
 from student import Student
 
 
+def add_student(students: list, student_id: str, name: str,
+                age: int, grade: str) -> list:
+    """Them sinh vien moi vao danh sach."""
+
+    for s in students:
+        if s.student_id == student_id:
+            print(f"Ma sinh vien {student_id} da ton tai!")
+            return students
+
+    new_student = Student(student_id, name, age, grade)
+    students.append(new_student)
+
+    print(f"Da them sinh vien: {new_student}")
+    return students
+
+
 def main():
-    """Hàm chính của ứng dụng."""
     print("=" * 50)
-    print("STUDENT MANAGER — DevOps Lab 5")
+    print("STUDENT MANAGER - DevOps Lab 5")
     print("=" * 50)
 
     students = [
@@ -18,6 +33,10 @@ def main():
         Student("SV002", "Tran Thi B", 21, "K20"),
         Student("SV003", "Le Van C", 19, "K21"),
     ]
+
+    students = add_student(
+        students, "SV004", "Pham Thi D", 22, "K19"
+    )
 
     for student in students:
         print(f"  {student}")
